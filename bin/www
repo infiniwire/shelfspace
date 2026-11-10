@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+import app from "../app.js";
+import http from "http";
+
+const port = process.env.PORT || "3000";
+app.set("port", port);
+
+const server = http.createServer(app);
+server.listen(port);
+
+server.on("error", (error) => {
+  if (error.syscall !== "listen") throw error;
+  console.error(`Port ${port} error:`, error.code);
+  process.exit(1);
+});
+
+server.on("listening", () => {
+  console.log(`Listening on port ${port}`);
+});
