@@ -12,7 +12,9 @@ function AddItem() {
     });
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.errors ? data.errors.join(", ") : "Failed to add item");
+      throw new Error(
+        data.errors ? data.errors.join(", ") : "Failed to add item"
+      );
     }
     navigate("/library");
   }

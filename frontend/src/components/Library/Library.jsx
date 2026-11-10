@@ -19,7 +19,6 @@ function Library() {
 
   useEffect(() => {
     fetchItems();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status]);
 
   async function handleDelete(id) {
@@ -38,9 +37,15 @@ function Library() {
         />
         <select value={status} onChange={(e) => setStatus(e.target.value)}>
           <option value="">All statuses</option>
-          {STATUS_VALUES.map((s) => <option key={s} value={s}>{s}</option>)}
+          {STATUS_VALUES.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
         </select>
-        <Link to="/add-item" className="library-add-button">+ Add item</Link>
+        <Link to="/add-item" className="library-add-button">
+          + Add item
+        </Link>
       </div>
 
       <div className="library-list">
@@ -48,12 +53,23 @@ function Library() {
           <div className="library-row" key={item._id}>
             <div>
               <p className="library-row-title">{item.title}</p>
-              <p className="library-row-sub">{item.mediaType} · {item.genre}</p>
+              <p className="library-row-sub">
+                {item.mediaType} · {item.genre}
+              </p>
             </div>
             <div className="library-row-right">
               <span className="library-row-status">{item.status}</span>
-              <Link to={`/edit-item/${item._id}`} className="library-row-update">Update</Link>
-              <button type="button" className="library-row-delete" onClick={() => handleDelete(item._id)}>
+              <Link
+                to={`/edit-item/${item._id}`}
+                className="library-row-update"
+              >
+                Update
+              </Link>
+              <button
+                type="button"
+                className="library-row-delete"
+                onClick={() => handleDelete(item._id)}
+              >
                 Delete
               </button>
             </div>

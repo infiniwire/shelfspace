@@ -18,9 +18,13 @@ router.get("/", requireAuth, async (req, res) => {
     if (mediaType) filter.mediaType = mediaType;
     if (search) filter.title = { $regex: search, $options: "i" };
 
-    const items = await db.collection("media").find(filter).sort({ addedDate: -1 }).toArray();
+    const items = await db
+      .collection("media")
+      .find(filter)
+      .sort({ addedDate: -1 })
+      .toArray();
     res.json(items);
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: "Failed to fetch media items" });
   }
 });
@@ -35,7 +39,7 @@ router.get("/:id", requireAuth, async (req, res) => {
     });
     if (!item) return res.status(404).json({ error: "Item not found" });
     res.json(item);
-  } catch (err) {
+  } catch {
     res.status(400).json({ error: "Invalid item id" });
   }
 });
@@ -54,7 +58,7 @@ router.post("/", requireAuth, async (req, res) => {
     };
     const result = await db.collection("media").insertOne(newItem);
     res.status(201).json({ _id: result.insertedId, ...newItem });
-  } catch (err) {
+  } catch {
     res.status(500).json({ error: "Failed to create media item" });
   }
 });
@@ -66,17 +70,21 @@ router.put("/:id", requireAuth, async (req, res) => {
 
   try {
     const db = await connectDB();
+    // eslint-disable-next-line no-unused-vars
     const { addedDate, ownerId, _id, ...updateFields } = req.body;
 
     const result = await db.collection("media").findOneAndUpdate(
-      { _id: new ObjectId(req.params.id), ownerId: new ObjectId(req.user._id) },
+      {
+        _id: new ObjectId(req.params.id),
+        ownerId: new ObjectId(req.user._id),
+      },
       { $set: updateFields },
       { returnDocument: "after" }
     );
 
     if (!result) return res.status(404).json({ error: "Item not found" });
     res.json(result);
-  } catch (err) {
+  } catch {
     res.status(400).json({ error: "Invalid item id" });
   }
 });
@@ -89,9 +97,10 @@ router.delete("/:id", requireAuth, async (req, res) => {
       _id: new ObjectId(req.params.id),
       ownerId: new ObjectId(req.user._id),
     });
-    if (result.deletedCount === 0) return res.status(404).json({ error: "Item not found" });
+    if (result.deletedCount === 0)
+      return res.status(404).json({ error: "Item not found" });
     res.json({ message: "Item deleted" });
-  } catch (err) {
+  } catch {
     res.status(400).json({ error: "Invalid item id" });
   }
 });

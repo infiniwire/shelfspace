@@ -11,10 +11,14 @@ function Nav() {
 
   return (
     <nav className="app-nav">
-      <Link to="/library" className="app-nav-brand">ShelfSpace</Link>
+      <Link to="/library" className="app-nav-brand">
+        ShelfSpace
+      </Link>
       <div className="app-nav-links">
         <Link to="/library">My Library</Link>
-        <button onClick={handleLogout} className="app-nav-logout">Log out</button>
+        <button onClick={handleLogout} className="app-nav-logout">
+          Log out
+        </button>
       </div>
     </nav>
   );

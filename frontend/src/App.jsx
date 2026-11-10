@@ -8,7 +8,8 @@ import EditItem from "./components/EditItem/EditItem";
 
 function App() {
   const location = useLocation();
-  const hideNav = location.pathname === "/login" || location.pathname === "/signup";
+  const hideNav =
+    location.pathname === "/login" || location.pathname === "/signup";
 
   return (
     <>

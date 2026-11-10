@@ -23,7 +23,9 @@ function EditItem() {
     });
     if (!res.ok) {
       const data = await res.json();
-      throw new Error(data.errors ? data.errors.join(", ") : "Failed to update item");
+      throw new Error(
+        data.errors ? data.errors.join(", ") : "Failed to update item"
+      );
     }
     navigate("/library");
   }
@@ -39,9 +41,15 @@ function EditItem() {
 
   return (
     <div>
-      <MediaItemForm initialValues={item} onSubmit={handleSubmit} submitLabel="Save changes" />
+      <MediaItemForm
+        initialValues={item}
+        onSubmit={handleSubmit}
+        submitLabel="Save changes"
+      />
       <div style={{ textAlign: "center" }}>
-        <button onClick={handleDelete} style={{ color: "#e24b4a" }}>Delete item</button>
+        <button onClick={handleDelete} style={{ color: "#e24b4a" }}>
+          Delete item
+        </button>
       </div>
     </div>
   );

@@ -2,30 +2,67 @@ const STATUS_VALUES = ["Want-to-read", "Reading", "Finished"];
 const CONDITION_VALUES = ["New", "Like New", "Good", "Fair", "Worn"];
 const MEDIA_TYPES = ["Book", "Movie", "Video Game", "Tabletop Game"];
 
-const BOOK_FORMATS = ["Hardcover", "Paperback", "Mass Market Paperback", "Audiobook (CD)"];
-const BOOK_GENRES = null; // free text allowed for books in this app
+const BOOK_FORMATS = [
+  "Hardcover",
+  "Paperback",
+  "Mass Market Paperback",
+  "Audiobook (CD)",
+];
 
 const MOVIE_FORMATS = ["DVD", "Blu-ray", "4K UHD", "VHS"];
 const MOVIE_RATINGS = ["G", "PG", "PG-13", "R", "NC-17", "Not Rated"];
 const MOVIE_GENRES = [
-  "Action", "Adventure", "Animation", "Comedy", "Crime", "Documentary",
-  "Drama", "Family", "Fantasy", "Horror", "Musical", "Mystery",
-  "Romance", "Sci-Fi", "Thriller", "War", "Western",
+  "Action",
+  "Adventure",
+  "Animation",
+  "Comedy",
+  "Crime",
+  "Documentary",
+  "Drama",
+  "Family",
+  "Fantasy",
+  "Horror",
+  "Musical",
+  "Mystery",
+  "Romance",
+  "Sci-Fi",
+  "Thriller",
+  "War",
+  "Western",
 ];
 
 const VG_ESRB = ["E", "E10+", "T", "M"];
 const VG_GENRES = [
-  "Action", "Adventure", "Fighting", "Platformer", "Puzzle", "Racing",
-  "Roguelike", "RPG", "Shooter", "Simulation", "Sports", "Strategy",
+  "Action",
+  "Adventure",
+  "Fighting",
+  "Platformer",
+  "Puzzle",
+  "Racing",
+  "Roguelike",
+  "RPG",
+  "Shooter",
+  "Simulation",
+  "Sports",
+  "Strategy",
   "Survival Horror",
 ];
 
 const TG_AGE_RATINGS = ["6+", "8+", "10+", "12+", "14+", "18+"];
 const TG_PLAYTIMES = [15, 30, 45, 60, 90, 120, 180];
 const TG_GENRES = [
-  "Area Control", "Cooperative", "Deck-Building", "Legacy", "Party",
-  "Roll-and-Write", "Social Deduction", "Strategy", "Tabletop RPG",
-  "Trivia", "Wargame", "Worker Placement",
+  "Area Control",
+  "Cooperative",
+  "Deck-Building",
+  "Legacy",
+  "Party",
+  "Roll-and-Write",
+  "Social Deduction",
+  "Strategy",
+  "Tabletop RPG",
+  "Trivia",
+  "Wargame",
+  "Worker Placement",
 ];
 
 function validateCommonFields(body) {
@@ -47,7 +84,9 @@ function validateCommonFields(body) {
     body.releaseYear > currentYear ||
     body.releaseYear < 1000
   ) {
-    errors.push(`releaseYear must be a 4-digit year no later than ${currentYear}`);
+    errors.push(
+      `releaseYear must be a 4-digit year no later than ${currentYear}`
+    );
   }
   if (!STATUS_VALUES.includes(body.status)) {
     errors.push(`status must be one of: ${STATUS_VALUES.join(", ")}`);
@@ -61,9 +100,12 @@ function validateCommonFields(body) {
 
 function validateBook(body) {
   const errors = [];
-  if (!body.isbn || typeof body.isbn !== "string") errors.push("isbn is required");
-  if (!body.author || typeof body.author !== "string") errors.push("author is required");
-  if (!body.publisher || typeof body.publisher !== "string") errors.push("publisher is required");
+  if (!body.isbn || typeof body.isbn !== "string")
+    errors.push("isbn is required");
+  if (!body.author || typeof body.author !== "string")
+    errors.push("author is required");
+  if (!body.publisher || typeof body.publisher !== "string")
+    errors.push("publisher is required");
   if (
     body.pageCount === undefined ||
     !Number.isInteger(body.pageCount) ||
@@ -83,8 +125,10 @@ function validateBook(body) {
 
 function validateMovie(body) {
   const errors = [];
-  if (!body.upc || !/^\d{12}$/.test(body.upc)) errors.push("upc must be exactly 12 digits");
-  if (!body.director || typeof body.director !== "string") errors.push("director is required");
+  if (!body.upc || !/^\d{12}$/.test(body.upc))
+    errors.push("upc must be exactly 12 digits");
+  if (!body.director || typeof body.director !== "string")
+    errors.push("director is required");
   if (
     body.runtimeMinutes === undefined ||
     !Number.isInteger(body.runtimeMinutes) ||
@@ -107,10 +151,14 @@ function validateMovie(body) {
 
 function validateVideoGame(body) {
   const errors = [];
-  if (!body.upc || !/^\d{12}$/.test(body.upc)) errors.push("upc must be exactly 12 digits");
-  if (!body.developer || typeof body.developer !== "string") errors.push("developer is required");
-  if (!body.publisher || typeof body.publisher !== "string") errors.push("publisher is required");
-  if (!body.platform || typeof body.platform !== "string") errors.push("platform is required");
+  if (!body.upc || !/^\d{12}$/.test(body.upc))
+    errors.push("upc must be exactly 12 digits");
+  if (!body.developer || typeof body.developer !== "string")
+    errors.push("developer is required");
+  if (!body.publisher || typeof body.publisher !== "string")
+    errors.push("publisher is required");
+  if (!body.platform || typeof body.platform !== "string")
+    errors.push("platform is required");
   if (!VG_ESRB.includes(body.esrbRating)) {
     errors.push(`esrbRating must be one of: ${VG_ESRB.join(", ")}`);
   }
@@ -122,9 +170,12 @@ function validateVideoGame(body) {
 
 function validateTabletopGame(body) {
   const errors = [];
-  if (!body.upc || !/^\d{12}$/.test(body.upc)) errors.push("upc must be exactly 12 digits");
-  if (!body.designer || typeof body.designer !== "string") errors.push("designer is required");
-  if (!body.publisher || typeof body.publisher !== "string") errors.push("publisher is required");
+  if (!body.upc || !/^\d{12}$/.test(body.upc))
+    errors.push("upc must be exactly 12 digits");
+  if (!body.designer || typeof body.designer !== "string")
+    errors.push("designer is required");
+  if (!body.publisher || typeof body.publisher !== "string")
+    errors.push("publisher is required");
   if (!TG_AGE_RATINGS.includes(body.ageRating)) {
     errors.push(`ageRating must be one of: ${TG_AGE_RATINGS.join(", ")}`);
   }
