@@ -24,7 +24,7 @@ const emptyForm = {
   condition: "Good",
 };
 
-function MediaItemForm({ initialValues, onSubmit, submitLabel }) {
+function MediaItemForm({ initialValues, onSubmit, submitLabel, onDelete }) {
   const [mediaType, setMediaType] = useState(initialValues?.mediaType || "");
   const [form, setForm] = useState({ ...emptyForm, ...initialValues });
   const [error, setError] = useState("");
@@ -439,6 +439,15 @@ function MediaItemForm({ initialValues, onSubmit, submitLabel }) {
             Change type
           </button>
         )}
+        {onDelete && (
+          <button
+            type="button"
+            className="media-form-delete"
+            onClick={onDelete}
+          >
+            Delete item
+          </button>
+        )}
       </div>
     </form>
   );
@@ -448,10 +457,12 @@ MediaItemForm.propTypes = {
   initialValues: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   submitLabel: PropTypes.string.isRequired,
+  onDelete: PropTypes.func,
 };
 
 MediaItemForm.defaultProps = {
   initialValues: null,
+  onDelete: null,
 };
 
 export default MediaItemForm;
