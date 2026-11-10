@@ -1,0 +1,20 @@
+:root {
+  --color-bg: #f6f3ec;
+  --color-surface: #ffffff;
+  --color-ink: #2b2420;
+  --color-muted: #8a7f6e;
+  --color-primary: #6e2a30;
+  --color-primary-dark: #551f24;
+  --color-accent: #b98b3e;
+  --color-accent-soft: #f1e4c8;
+  --color-danger: #9c3b33;
+  --color-border: #d9d2c2;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}

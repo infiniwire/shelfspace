@@ -40,18 +40,12 @@ function EditItem() {
   if (!item) return <p>Item not found.</p>;
 
   return (
-    <div>
-      <MediaItemForm
-        initialValues={item}
-        onSubmit={handleSubmit}
-        submitLabel="Save changes"
-      />
-      <div style={{ textAlign: "center" }}>
-        <button onClick={handleDelete} style={{ color: "#e24b4a" }}>
-          Delete item
-        </button>
-      </div>
-    </div>
+    <MediaItemForm
+      initialValues={item}
+      onSubmit={handleSubmit}
+      submitLabel="Save changes"
+      onDelete={handleDelete}
+    />
   );
 }
 
