@@ -8,14 +8,25 @@ function Library() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
 
-  useEffect(() => {
+  function fetchItems() {
     const params = new URLSearchParams();
     if (search) params.set("search", search);
     if (status) params.set("status", status);
     fetch(`/api/media?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => setItems(data));
+  }
+
+  useEffect(() => {
+    fetchItems();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [search, status]);
+
+  async function handleDelete(id) {
+    if (!window.confirm("Delete this item?")) return;
+    await fetch(`/api/media/${id}`, { method: "DELETE" });
+    fetchItems();
+  }
 
   return (
     <div className="library-page">
@@ -34,13 +45,19 @@ function Library() {
 
       <div className="library-list">
         {items.map((item) => (
-          <Link to={`/edit-item/${item._id}`} className="library-row" key={item._id}>
+          <div className="library-row" key={item._id}>
             <div>
               <p className="library-row-title">{item.title}</p>
               <p className="library-row-sub">{item.mediaType} · {item.genre}</p>
             </div>
-            <span className="library-row-status">{item.status}</span>
-          </Link>
+            <div className="library-row-right">
+              <span className="library-row-status">{item.status}</span>
+              <Link to={`/edit-item/${item._id}`} className="library-row-update">Update</Link>
+              <button type="button" className="library-row-delete" onClick={() => handleDelete(item._id)}>
+                Delete
+              </button>
+            </div>
+          </div>
         ))}
         {items.length === 0 && <p className="library-empty">No items found.</p>}
       </div>
