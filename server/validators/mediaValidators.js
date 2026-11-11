@@ -1,4 +1,4 @@
-const STATUS_VALUES = ["Want-to-read", "Reading", "Finished"];
+const STATUS_VALUES = ["Wishlist", "In Progress", "Finished"];
 const CONDITION_VALUES = ["New", "Like New", "Good", "Fair", "Worn"];
 const MEDIA_TYPES = ["Book", "Movie", "Video Game", "Tabletop Game"];
 
