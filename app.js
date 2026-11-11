@@ -6,6 +6,7 @@ import logger from "morgan";
 import initializePassport from "./server/passport-config.js";
 import authRoutes from "./server/routes/auth.js";
 import mediaRoutes from "./server/routes/media.js";
+import loanRoutes from "./server/routes/loans.js";
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.use(passport.session());
 
 app.use("/api", authRoutes);
 app.use("/api/media", mediaRoutes);
+app.use("/api/loans", loanRoutes);
 
 export default app;
