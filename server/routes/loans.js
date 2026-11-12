@@ -101,4 +101,77 @@ router.post("/", requireAuth, async (req, res) => {
   }
 });
 
+// PATCH /api/loans/:id/return
+router.patch("/:id", requireAuth, async (req, res) => {
+  try {
+    const db = await connectDB();
+    const updated = await db.collection("loans").findOneAndUpdate(
+      {
+        _id: new ObjectId(req.params.id),
+        ownerId: new ObjectId(req.user._id),
+        dateReturned: null,
+      },
+      { $set: { dateReturned: new Date() } },
+      { returnDocument: "after" }
+    );
+    if (!updated)
+      return res
+        .status(404)
+        .json({ error: "Loan not found or already returned" });
+    res.json({ ...updated, status: getLoanStatus(updated, new Date()) });
+  } catch {
+    res.status(400).json({ error: "Invalid Loan id" });
+  }
+});
+
+// PUT /api/loans/:id
+router.put("/:id", requireAuth, async (req, res) => {
+  const errors = validateLoan(req.body);
+  if (errors.length > 0) return res.status(400).json({ errors });
+
+  try {
+    const db = await connectDB();
+    const updated = await db.collection("loans").findOneAndUpdate(
+      {
+        _id: new ObjectId(req.params.id),
+        ownerId: new ObjectId(req.user._id),
+      },
+      {
+        $set: {
+          borrowerName: req.body.borrowerName.trim(),
+          borrowerEmail: req.body.borrowerEmail
+            ? req.body.borrowerEmail.trim()
+            : null,
+          dateOut: new Date(req.body.dateOut),
+          dueDate: new Date(req.body.dueDate),
+          dateReturned: req.body.dateReturned
+            ? new Date(req.body.dateReturned)
+            : null,
+        },
+      },
+      { returnDocument: "after" }
+    );
+    if (!updated) return res.status(404).json({ error: "Loan not found" });
+    res.json({ ...updated, status: getLoanStatus(updated, new Date()) });
+  } catch {
+    res.status(400).json({ error: "Invalid Loan id" });
+  }
+});
+
+// DELETE /api/loans/:id
+router.delete("/:id", requireAuth, async (req, res) => {
+  try {
+    const db = await connectDB();
+    const result = await db.collection("loans").deleteOne({
+      _id: new ObjectId(req.params.id),
+      ownerId: new ObjectId(req.user._id),
+    });
+    if (result.deletedCount === 0)
+      return res.status(404).json({ error: "Loan not found" });
+    res.json({ message: "Loan deleted" });
+  } catch {
+    res.status(400).json({ error: "Invalid Loan id" });
+  }
+});
+
 export default router;
