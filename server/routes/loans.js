@@ -43,14 +43,14 @@ router.get("/", requireAuth, async (req, res) => {
 router.get("/:id", requireAuth, async (req, res) => {
   try {
     const db = await connectDB();
-    const item = await db.collection("loans").findOne({
+    const loan = await db.collection("loans").findOne({
       _id: new ObjectId(req.params.id),
       ownerId: new ObjectId(req.user._id),
     });
-    if (!item) return res.status(404).json({ error: "Loan not found" });
-    res.json(item);
+    if (!loan) return res.status(404).json({ error: "Loan not found" });
+    res.json({ ...loan, status: getLoanStatus(loan, new Date()) });
   } catch {
-    res.status(400).json({ error: "Invalid item id" });
+    res.status(400).json({ error: "Invalid loan id" });
   }
 });
 
