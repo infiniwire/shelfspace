@@ -16,6 +16,7 @@ function Nav() {
       </Link>
       <div className="app-nav-links">
         <Link to="/library">My Library</Link>
+        <Link to="/loans">My Loans</Link>
         <button onClick={handleLogout} className="app-nav-logout">
           Log out
         </button>
