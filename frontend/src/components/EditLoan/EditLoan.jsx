@@ -10,13 +10,16 @@ function EditLoan() {
 
   useEffect(() => {
     fetch(`/api/loans/${id}`)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not load your items");
+        return res.json();
+      })
       .then((data) => setLoan(data))
       .finally(() => setLoading(false));
   }, [id]);
 
   async function handleSubmit(formData) {
-    const res = await fetch(`/api/loans/${id}`, {
+    const res = await fetch(`/api/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),

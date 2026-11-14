@@ -16,7 +16,7 @@ function AddItem() {
         data.errors ? data.errors.join(", ") : "Failed to add loan"
       );
     }
-    navigate("/loans");
+    navigate("/l");
   }
 
   return <LoanForm onSubmit={handleSubmit} submitLabel="Add loan" />;

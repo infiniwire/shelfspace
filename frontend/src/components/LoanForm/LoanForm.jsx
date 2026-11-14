@@ -11,6 +11,18 @@ const emptyForm = {
   dateReturned: "",
 };
 
+function toFormValues(loan) {
+  if (!loan) return emptyForm;
+  return {
+    itemId: loan.itemId,
+    borrowerName: loan.borrowerName,
+    borrowerEmail: loan.borrowerEmail ?? "",
+    dateOut: loan.dateOut.slice(0, 10),
+    dueDate: loan.dueDate.slice(0, 10),
+    dateReturned: loan.dateReturned?.slice(0, 10) ?? "",
+  };
+}
+
 function LoanForm({
   initialValues = null,
   onSubmit,
@@ -18,7 +30,7 @@ function LoanForm({
   onDelete = null,
 }) {
   const [mediaItems, setMediaItems] = useState([]);
-  const [form, setForm] = useState({ ...emptyForm, ...initialValues });
+  const [form, setForm] = useState(toFormValues(initialValues));
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -82,7 +94,6 @@ function LoanForm({
           type="email"
           value={form.borrowerEmail}
           onChange={(e) => update("borrowerEmail", e.target.value)}
-          required
         />
       </label>
 
@@ -112,7 +123,6 @@ function LoanForm({
           type="date"
           value={form.dateReturned}
           onChange={(e) => update("dateReturned", e.target.value)}
-          required
         />
       </label>
 
@@ -132,6 +142,7 @@ LoanForm.propTypes = {
   initialValues: PropTypes.object,
   onSubmit: PropTypes.func.isRequired,
   onDelete: PropTypes.func,
+  submitLabel: PropTypes.string.isRequired,
 };
 
 export default LoanForm;

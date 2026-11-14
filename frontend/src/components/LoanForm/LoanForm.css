@@ -77,6 +77,7 @@
   background: none;
   border: 1px solid var(--color-danger);
   color: var(--color-danger);
+  width: 100%;
 }
 .loan-form-delete:hover {
   background: rgba(156, 59, 51, 0.08);

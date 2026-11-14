@@ -150,6 +150,3 @@ vite.config.ts.timestamp-*
 
 # Course assignment notes (local only)
 assignment/
-
-# Data generation and ETL (local only)
-dataGeneration/
