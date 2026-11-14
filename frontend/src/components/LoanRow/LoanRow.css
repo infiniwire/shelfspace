@@ -45,6 +45,7 @@
   color: var(--color-primary-dark);
 }
 
+.loan-row-return,
 .loan-row-update {
   font-family: var(--font-body);
   padding: 0.35rem 0.85rem;
@@ -56,6 +57,8 @@
   font-weight: 600;
   transition: background 0.15s ease;
 }
+
+.loan-row-return:hover,
 .loan-row-update:hover {
   background: var(--color-accent-soft);
 }

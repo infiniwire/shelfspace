@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { STATUS_OPTIONS } from "../../constants/loanOptions";
 import "./LoansPage.css";
 import LoanRow from "../LoanRow/LoanRow";
@@ -59,6 +59,9 @@ function LoansPage() {
             </option>
           ))}
         </select>
+        <Link to="/add-loan" className="loan-add-button">
+          + Add Loan
+        </Link>
       </div>
 
       <div className="loans-list">

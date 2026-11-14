@@ -1,5 +1,6 @@
 import "./LoanRow.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 function LoanRow({ loan, onDelete, onReturn }) {
   return (
@@ -17,6 +18,9 @@ function LoanRow({ loan, onDelete, onReturn }) {
         >
           Delete
         </button>
+        <Link to={`/edit-loan/${loan._id}`} className="loan-edit-link">
+          Edit Details
+        </Link>
         {loan.status !== "returned" && (
           <button
             type="button"
