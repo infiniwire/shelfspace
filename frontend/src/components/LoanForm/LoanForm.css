@@ -1,0 +1,84 @@
+.loan-form {
+  max-width: 480px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  background: var(--color-surface);
+  border-radius: 12px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(43, 36, 32, 0.08);
+}
+.loan-form h2 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.6rem;
+  color: var(--color-ink);
+  margin: 0 0 0.25rem;
+}
+.loan-form label {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--color-muted);
+  gap: 0.3rem;
+}
+.loan-form input,
+.loan-form select {
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  background: var(--color-bg);
+}
+.loan-form input:focus,
+.loan-form select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+.loan-form-error {
+  color: var(--color-danger);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+}
+.loan-form-actions {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.loan-form-actions button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  font-size: 0.9rem;
+}
+.loan-form-actions button[type="submit"] {
+  background: var(--color-primary);
+  color: #faf6ee;
+  width: 100%;
+}
+.loan-form-actions button[type="submit"]:hover {
+  background: var(--color-primary-dark);
+}
+.loan-form-actions button[type="button"]:not(.loan-form-delete) {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-ink);
+}
+.loan-form-delete {
+  background: none;
+  border: 1px solid var(--color-danger);
+  color: var(--color-danger);
+  width: 100%;
+}
+.loan-form-delete:hover {
+  background: rgba(156, 59, 51, 0.08);
+}
