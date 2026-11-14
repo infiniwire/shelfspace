@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { STATUS_OPTIONS } from "../../constants/loanOptions";
 import "./LoansPage.css";
+import LoanRow from "../LoanRow/LoanRow";
 
 function LoansPage() {
   const [loans, setLoans] = useState([]);
@@ -24,6 +25,29 @@ function LoansPage() {
     fetchLoans();
   }, [status]);
 
+  async function handleDelete(id) {
+    if (!window.confirm("Delete this loan?")) return;
+    const res = await fetch(`/api/loans/${id}`, { method: "DELETE" });
+    if (res.ok) {
+      setLoans(loans.filter((l) => l._id !== id));
+    } else {
+      const data = await res.json();
+      alert(data.error);
+    }
+  }
+
+  async function handleReturn(id) {
+    if (!window.confirm("Mark this loan as returned?")) return;
+    const res = await fetch(`/api/loans/${id}`, { method: "PATCH" });
+    if (res.ok) {
+      const updated = await res.json();
+      setLoans(loans.map((l) => (l._id === id ? updated : l)));
+    } else {
+      const data = await res.json();
+      alert(data.error);
+    }
+  }
+
   return (
     <div className="loans-page">
       <div className="loans-controls">
@@ -39,13 +63,12 @@ function LoansPage() {
 
       <div className="loans-list">
         {loans.map((loan) => (
-          <div className="loans-row" key={loan._id}>
-            <div>
-              <p className="loans-row-borrower-name">{loan.borrowerName}</p>
-              <p className="loans-row-due">{loan.dueDate}</p>
-              <p className="loans-row-status">{loan.status}</p>
-            </div>
-          </div>
+          <LoanRow
+            key={loan._id}
+            loan={loan}
+            onDelete={handleDelete}
+            onReturn={handleReturn}
+          />
         ))}
         {loans.length === 0 && <p className="loans-empty">No loans found.</p>}
       </div>
