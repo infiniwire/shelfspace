@@ -79,9 +79,11 @@
   background: rgba(156, 59, 51, 0.08);
 }
 
-.loan-empty {
-  font-family: var(--font-body);
-  text-align: center;
+.loan-row-status-overdue {
+  background: rgba(156, 59, 51, 0.12);
+  color: var(--color-danger);
+}
+.loan-row-status-returned {
+  background: var(--color-bg);
   color: var(--color-muted);
-  padding: 2rem 0;
 }

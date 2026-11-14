@@ -7,22 +7,14 @@ function LoanRow({ loan, onDelete, onReturn }) {
     <div className="loan-row">
       <div>
         <p className="loan-row-title">{loan.itemTitle || "(deleted item)"}</p>
-        <div className="loan-row-sub">
-          <p className="loan-row-borrower-name">{loan.borrowerName}</p>
-          <p className="loan-row-due">
-            {new Date(loan.dueDate).toLocaleDateString()}
+        <p className="loan-row-sub">
+          {loan.borrowerName} · Due{" "}
+          {new Date(loan.dueDate).toLocaleDateString()}
+        </p>
+        <div className="loan-row-right">
+          <p className={`loan-row-status loan-row-status-${loan.status}`}>
+            {loan.status}
           </p>
-        </div>
-        <p className="loan-row-status">{loan.status}</p>
-        <div className="library-row-right">
-          {" "}
-          <button
-            type="button"
-            className="loan-row-delete"
-            onClick={() => onDelete(loan._id)}
-          >
-            Delete
-          </button>
           <Link to={`/edit-loan/${loan._id}`} className="loan-edit-link">
             Edit Details
           </Link>
@@ -35,6 +27,13 @@ function LoanRow({ loan, onDelete, onReturn }) {
               Mark Returned
             </button>
           )}
+          <button
+            type="button"
+            className="loan-row-delete"
+            onClick={() => onDelete(loan._id)}
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>

@@ -52,3 +52,10 @@
   flex-direction: column;
   gap: 0.6rem;
 }
+
+.loans-empty {
+  font-family: var(--font-body);
+  text-align: center;
+  color: var(--color-muted);
+  padding: 2rem 0;
+}

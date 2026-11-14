@@ -47,7 +47,7 @@ function LoanForm({
 
   return (
     <form className="loan-form" onSubmit={handleSubmit}>
-      <h2 className="loan-item-form">Add or Update Loan</h2>
+      <h2>Add or Update Loan</h2>
       {error && <p className="loan-form-error">{error}</p>}
 
       <label className="loan-item-form">
