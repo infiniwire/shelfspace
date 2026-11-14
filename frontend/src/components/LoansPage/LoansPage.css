@@ -4,6 +4,26 @@
   padding: 0 1rem;
 }
 
+.loan-add-button {
+  font-family: var(--font-body);
+  padding: 0.55rem 1.1rem;
+  background: var(--color-primary);
+  color: #faf6ee;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(110, 42, 48, 0.35);
+  transition:
+    transform 0.1s ease,
+    box-shadow 0.1s ease;
+}
+.loan-add-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(110, 42, 48, 0.4);
+}
+
 .loans-controls {
   display: flex;
   justify-content: center;

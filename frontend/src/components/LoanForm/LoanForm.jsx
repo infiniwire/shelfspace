@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import "./LoanForm.css";
 
@@ -21,13 +21,15 @@ function LoanForm({
   const [form, setForm] = useState({ ...emptyForm, ...initialValues });
   const [error, setError] = useState("");
 
-  fetch("/api/media")
-    .then((res) => {
-      if (!res.ok) throw new Error("Could not load your items");
-      return res.json();
-    })
-    .then((data) => setMediaItems(data))
-    .catch((err) => setError(err.message));
+  useEffect(() => {
+    fetch("/api/media")
+      .then((res) => {
+        if (!res.ok) throw new Error("Could not load your items");
+        return res.json();
+      })
+      .then((data) => setMediaItems(data))
+      .catch((err) => setError(err.message));
+  }, []);
 
   function update(field, value) {
     setForm((prev) => ({ ...prev, [field]: value }));
@@ -45,10 +47,10 @@ function LoanForm({
 
   return (
     <form className="loan-form" onSubmit={handleSubmit}>
-      <h2>Add or Update Loan</h2>
+      <h2 className="loan-item-form">Add or Update Loan</h2>
       {error && <p className="loan-form-error">{error}</p>}
 
-      <label>
+      <label className="loan-item-form">
         Item
         <select
           value={form.itemId}
@@ -65,7 +67,7 @@ function LoanForm({
         </select>
       </label>
 
-      <label>
+      <label className="loan-item-form">
         Borrower
         <input
           value={form.borrowerName}
@@ -74,50 +76,50 @@ function LoanForm({
         />
       </label>
 
-      <label>
-        Borrower
+      <label className="loan-item-form">
+        Borrower Email
         <input
+          type="email"
           value={form.borrowerEmail}
           onChange={(e) => update("borrowerEmail", e.target.value)}
           required
         />
       </label>
 
-      <label>
+      <label className="loan-item-form">
         Loan Date
         <input
+          type="date"
           value={form.dateOut}
           onChange={(e) => update("dateOut", e.target.value)}
           required
         />
       </label>
 
-      <label>
+      <label className="loan-item-form">
         Due Date
         <input
+          type="date"
           value={form.dueDate}
           onChange={(e) => update("dueDate", e.target.value)}
           required
         />
       </label>
 
-      <label>
+      <label className="loan-item-form">
         Return Date
         <input
+          type="date"
           value={form.dateReturned}
           onChange={(e) => update("dateReturned", e.target.value)}
           required
         />
       </label>
 
-      <div className="media-form-actions">
+      <div className="loan-form-actions">
         <button type="submit">{submitLabel}</button>
         {onDelete && (
-          <button
-            type="button"
-            className="media-form-delete"
-            onClick={onDelete}
-          >
+          <button type="button" className="loan-form-delete" onClick={onDelete}>
             Delete item
           </button>
         )}

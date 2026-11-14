@@ -26,12 +26,23 @@ router.get("/", requireAuth, async (req, res) => {
 
     const items = await db
       .collection("loans")
-      .find(filter)
-      .sort({ dateOut: -1 })
+      .aggregate([
+        { $match: filter },
+        { $sort: { dateOut: -1 } },
+        {
+          $lookup: {
+            from: "media",
+            localField: "itemId",
+            foreignField: "_id",
+            as: "item",
+          },
+        },
+      ])
       .toArray();
     const loans = items.map((loan) => ({
       ...loan,
       status: getLoanStatus(loan, now),
+      itemTitle: loan.item[0]?.title,
     }));
     res.json(loans);
   } catch {
