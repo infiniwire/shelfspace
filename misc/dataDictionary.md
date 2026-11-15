@@ -63,7 +63,7 @@ Each document is one physical item: a book, movie, video game or tabletop game. 
 | `title`       | String   | Yes      |                                                | Item title                              |
 | `genre`       | String   | Yes      | Depends on `mediaType` (see below)             | Used for filtering                      |
 | `releaseYear` | Number   | Yes      | 4-digit year, no later than the current year   | Year of release / publication           |
-| `status`      | String   | Yes      | `Want-to-read`, `Reading`, `Finished`          | The owner's reading / watching progress |
+| `status`      | String   | Yes      | `Wishlist`, `In Progress`, `Finished`          | The owner's reading / watching progress |
 | `condition`   | String   | Yes      | `New`, `Like New`, `Good`, `Fair`, `Worn`      | Physical condition                      |
 | `addedDate`   | Date     | Yes      | Between the owner's `createdAt` and now        | When the item was added to the library  |
 
