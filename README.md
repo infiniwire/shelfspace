@@ -2,9 +2,7 @@
 
 A personal library and lending tracker for people who share books, films and games with friends. Catalog your collection by status and genre, log every loan, and see at a glance what's overdue and who has it.
 
-![ShelfSpace screenshot](docs/screenshot.png)
-
-**Live demo:** [TODO: deployed URL]
+**Deployed URL:** [TODO: deployed URL]
 **Demo video:** [TODO: video URL]
 
 ## Authors
@@ -16,7 +14,7 @@ Each of us built the full stack for our own feature: MongoDB collection, Express
 
 ## Class
 
-Built for **CS 5610 Web Development** at Northeastern University: [TODO: class link]
+Built for **CS 5610 Web Development** at Northeastern University: https://johnguerra.co/classes/webDevelopment_online_fall_2026/
 
 ## Project objective
 
@@ -28,12 +26,20 @@ It's easy to lose track of what you own, what you've read, and who still has the
 
 Every user has a private account and sees only their own library and loans.
 
+**Presentation slides** - https://docs.google.com/presentation/d/1ChT4pqPvHQKm16oZMgLeLMyWkx9M6ryK8z885yayLrg/edit?usp=sharing
+
+**Design Document** - 
+
+
+
 ## Features
 
 ### Personal Library
 
-- Add, edit and delete items. Each media type has its own fields (author and ISBN for books, platform and ESRB rating for video games, and so on).
-- Search by title and filter by status.
+- Catalog books, movies, video games, and tabletop games — each with its own relevant fields (author and ISBN for books, director and runtime for movies, platform and ESRB rating for video games, player count and designer for tabletop games).
+- Add, edit, and delete items from your collection at any time.
+- Search by title and filter by status (Wishlist, In Progress, Finished) or genre to quickly find what you’re looking for.
+
 
 ### Lending Log
 
@@ -64,6 +70,17 @@ Every user has a private account and sees only their own library and loans.
 | Code quality   | ESLint, Prettier                                                    |
 
 The frontend is client-side rendered and talks to the backend only through `fetch` calls to `/api/...`. In development, Vite proxies those requests to Express, so no CORS library is needed.
+
+## Screenshots
+
+![My Library Page](misc/my_library_page.png)
+![Add Item Page](misc/add_item_page.png)
+![Update Item Page](misc/update_item_page.png)
+![Delete Item Page](misc/delete_item.png)
+![My Loans Page](misc/my_loans_page.png)
+![add or update loans page](misc/add_or_update_loan_page.png)
+![Delete Loans Page](misc/delete_loan_page.png)
+
 
 ## Build and run locally
 
@@ -203,9 +220,21 @@ All routes except signup and login require a logged-in session, and every query 
 
 See [docs/dataDictionary.md](docs/dataDictionary.md) for every field in each collection and how they relate.
 
+## Limitations
+
+- The design document identifies these items as outside the approved scope:
+- Online notifications or automated email/SMS reminders for overdue loans.
+- Borrower accounts — borrowers are not app users and cannot log in to see their own loan history.
+- Barcode or ISBN/UPC scanning to auto-fill item details.
+- Image or cover art uploads for library items.
+- Public or shared libraries — each user’s library and loans are private to that account only.
+- Payment or rental fee tracking between owner and borrower.
+
+
 ## Use of AI
 
-This README was drafted with the help of Claude (Anthropic) and reviewed by the authors.
+- This README was drafted with the help of Claude (Anthropic) and reviewed by the authors.
+- Claude (Anthropic) helped debug Passport authentication and MongoDB connection issues, help understand and debug per-media-type validation logic, understand the React form components. All AI-assisted code was reviewed and tested before committing
 
 ## License
 

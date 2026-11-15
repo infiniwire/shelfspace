@@ -1,4 +1,4 @@
-export const STATUS_VALUES = ["Want-to-read", "Reading", "Finished"];
+export const STATUS_VALUES = ["Wishlist", "In Progress", "Finished"];
 export const CONDITION_VALUES = ["New", "Like New", "Good", "Fair", "Worn"];
 export const MEDIA_TYPES = ["Book", "Movie", "Video Game", "Tabletop Game"];
 
