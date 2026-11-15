@@ -26,6 +26,12 @@ It's easy to lose track of what you own, what you've read, and who still has the
 
 Every user has a private account and sees only their own library and loans.
 
+**Presentation slides** - https://docs.google.com/presentation/d/1ChT4pqPvHQKm16oZMgLeLMyWkx9M6ryK8z885yayLrg/edit?usp=sharing
+
+**Design Document** - 
+
+
+
 ## Features
 
 ### Personal Library
