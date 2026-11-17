@@ -2,7 +2,11 @@
 
 A personal library and lending tracker for people who share books, films and games with friends. Catalog your collection by status and genre, log every loan, and see at a glance what's overdue and who has it.
 
+<<<<<<< HEAD
 **Deployed URL:** [[ShelfSpace](https://shelfspace-2m9y.onrender.com/)]
+=======
+**Deployed URL:** [(https://shelfspace-2m9y.onrender.com/)]
+>>>>>>> 45b36d62f2ae68c7038571d6bbc10347b2f78890
 **Demo video:** [TODO: video URL]
 
 ## Authors
