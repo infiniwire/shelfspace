@@ -6,7 +6,7 @@ function Nav() {
 
   async function handleLogout() {
     await fetch("/api/logout", { method: "POST" });
-    navigate("/login");
+    navigate("/");
   }
 
   return (
