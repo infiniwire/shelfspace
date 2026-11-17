@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import LoanForm from "../LoanForm/LoanForm";
 
-function AddItem() {
+function AddLoan() {
   const navigate = useNavigate();
 
   async function handleSubmit(formData) {
@@ -13,13 +13,15 @@ function AddItem() {
     if (!res.ok) {
       const data = await res.json();
       throw new Error(
-        data.errors ? data.errors.join(", ") : "Failed to add loan"
+        data.errors
+          ? data.errors.join(", ")
+          : data.error || "Failed to add loan"
       );
     }
-    navigate("/l");
+    navigate("/loans");
   }
 
   return <LoanForm onSubmit={handleSubmit} submitLabel="Add loan" />;
 }
 
-export default AddItem;
+export default AddLoan;
