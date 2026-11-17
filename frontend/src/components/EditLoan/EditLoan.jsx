@@ -19,7 +19,7 @@ function EditLoan() {
   }, [id]);
 
   async function handleSubmit(formData) {
-    const res = await fetch(`/api/${id}`, {
+    const res = await fetch(`/api/loans/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
@@ -27,20 +27,22 @@ function EditLoan() {
     if (!res.ok) {
       const data = await res.json();
       throw new Error(
-        data.errors ? data.errors.join(", ") : "Failed to update loan"
+        data.errors
+          ? data.errors.join(", ")
+          : data.error || "Failed to update loan"
       );
     }
     navigate("/loans");
   }
 
   async function handleDelete() {
-    if (!window.confirm("Delete this item?")) return;
+    if (!window.confirm("Delete this loan?")) return;
     await fetch(`/api/loans/${id}`, { method: "DELETE" });
     navigate("/loans");
   }
 
   if (loading) return <p>Loading...</p>;
-  if (!loan) return <p>Item not found.</p>;
+  if (!loan) return <p>Loan not found.</p>;
 
   return (
     <LoanForm

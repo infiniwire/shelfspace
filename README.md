@@ -2,7 +2,7 @@
 
 A personal library and lending tracker for people who share books, films and games with friends. Catalog your collection by status and genre, log every loan, and see at a glance what's overdue and who has it.
 
-**Deployed URL:** [TODO: deployed URL]
+**Deployed URL:** [[ShelfSpace](https://shelfspace-2m9y.onrender.com/)]
 **Demo video:** [TODO: video URL]
 
 ## Authors
@@ -28,9 +28,7 @@ Every user has a private account and sees only their own library and loans.
 
 **Presentation slides** - https://docs.google.com/presentation/d/1ChT4pqPvHQKm16oZMgLeLMyWkx9M6ryK8z885yayLrg/edit?usp=sharing
 
-**Design Document** - 
-
-
+**Design Document** - https://docs.google.com/document/d/1gzJVMHfJkXpSF6oy1BDtLKgFq4k81bBi/edit?usp=sharing&ouid=104680635018689165192&rtpof=true&sd=true
 
 ## Features
 
@@ -39,7 +37,6 @@ Every user has a private account and sees only their own library and loans.
 - Catalog books, movies, video games, and tabletop games — each with its own relevant fields (author and ISBN for books, director and runtime for movies, platform and ESRB rating for video games, player count and designer for tabletop games).
 - Add, edit, and delete items from your collection at any time.
 - Search by title and filter by status (Wishlist, In Progress, Finished) or genre to quickly find what you’re looking for.
-
 
 ### Lending Log
 
@@ -80,7 +77,6 @@ The frontend is client-side rendered and talks to the backend only through `fetc
 ![My Loans Page](misc/my_loans_page.png)
 ![add or update loans page](misc/add_or_update_loan_page.png)
 ![Delete Loans Page](misc/delete_loan_page.png)
-
 
 ## Build and run locally
 
@@ -229,7 +225,6 @@ See [docs/dataDictionary.md](docs/dataDictionary.md) for every field in each col
 - Image or cover art uploads for library items.
 - Public or shared libraries — each user’s library and loans are private to that account only.
 - Payment or rental fee tracking between owner and borrower.
-
 
 ## Use of AI
 
