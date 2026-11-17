@@ -4,6 +4,7 @@ import eslintConfigPrettier from "eslint-config-prettier";
 import prettier from "eslint-plugin-prettier";
 
 export default [
+  { ignores: ["frontend/dist/"] },
   {
     files: ["**/*.{js,jsx,mjs,cjs,ts,tsx}"],
 
