@@ -28,7 +28,7 @@ Every user has a private account and sees only their own library and loans.
 
 **Presentation slides** - https://docs.google.com/presentation/d/1ChT4pqPvHQKm16oZMgLeLMyWkx9M6ryK8z885yayLrg/edit?usp=sharing
 
-**Design Document** - https://github.com/thejuu5/shelfspace/misc/Design Document.pdf
+**Design Document** - https://github.com/thejuu5/shelfspace/blob/main/misc/Design%20Document.pdf
 
 ## Features
 
